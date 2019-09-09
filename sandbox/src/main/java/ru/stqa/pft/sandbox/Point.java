@@ -7,20 +7,15 @@ public class Point {
 
   public double x;
   public double y;
-  public double x1;
-  public double y1;
 
-
-  public Point (double x, double y, double x1, double y1) {
+  public Point (double x, double y) {
     this.x = x;
     this.y = y;
-    this.x1 = x1;
-    this.y1 = y1;
   }
 
-  public double distance() {
+  public static double distance(Point p1, Point p2) {
 
-    return Math.sqrt(Math.pow((x-x1),2)+Math.pow((y-y1),2));
+    return Math.sqrt(Math.pow((p1.x-p2.x),2)+Math.pow((p1.y-p2.y),2));
 
   }
 
