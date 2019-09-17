@@ -9,8 +9,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
  */
 public class ContactHelper extends HelperBase{
 
-  private static ChromeDriver driver;
-
   public ContactHelper(ChromeDriver driver) {
     super (driver);
   }
@@ -33,5 +31,22 @@ public class ContactHelper extends HelperBase{
 
   public void initContactCreation() {
     click(By.linkText("add new"));
+  }
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//input[@value='Delete']"));
+    driver.switchTo().alert().accept();
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+
   }
 }
