@@ -47,6 +47,6 @@ public class ContactHelper extends HelperBase{
   }
 
   public void submitContactModification() {
-
+    click(By.xpath("//input[@value='Update']"));
   }
 }
