@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -38,5 +39,15 @@ public class HelperBase {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      driver.findElement(locator);
+      return true;
+  } catch (NoSuchContextException ex) {
+      return false;
+    }
+
   }
 }
