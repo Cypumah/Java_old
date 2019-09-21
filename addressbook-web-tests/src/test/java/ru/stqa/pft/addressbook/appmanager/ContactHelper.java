@@ -32,11 +32,6 @@ public class ContactHelper extends HelperBase{
     type(By.name("mobile"), contactData.getMobilephone());
     type(By.name("notes"), contactData.getNotes());
 
-//    if (creation) {
-//      new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//    } else {
-//      Assert.assertFalse(isElementPresent(By.name("new_group")));
-  //  }
     if (creation) {
       new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
@@ -63,5 +58,23 @@ public class ContactHelper extends HelperBase{
 
   public void submitContactModification() {
     click(By.xpath("//input[@value='Update']"));
+  }
+
+  public void gotoContactPage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home page"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    initContactCreation();
+    fillContactForm(contact, creation);
+    submitContactCreaion();
+    gotoContactPage();
+  }
+
+  public boolean isThereAContact() {
+    return (isElementPresent(By.name("selected[]")));
   }
 }
