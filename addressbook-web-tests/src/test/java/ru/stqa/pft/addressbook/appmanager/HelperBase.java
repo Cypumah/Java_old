@@ -1,9 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchContextException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
@@ -25,7 +22,7 @@ public class HelperBase {
     click(locator);
     if (text != null) {
       String existingText = driver.findElement(locator).getAttribute("value");
-      if (! text.equals(existingText)) {
+      if (!text.equals(existingText)) {
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
       }
@@ -41,13 +38,12 @@ public class HelperBase {
     }
   }
 
-  protected boolean isElementPresent(By locator) {
+  public boolean isElementPresent(By locator) {
     try {
       driver.findElement(locator);
       return true;
-  } catch (NoSuchContextException ex) {
+    } catch (NoSuchElementException ex) {
       return false;
     }
-
   }
 }
