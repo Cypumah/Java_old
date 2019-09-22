@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -18,7 +16,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void submitContactCreaion() {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
+    click(By.xpath("//input[@name='submit']"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -48,8 +46,8 @@ public class ContactHelper extends HelperBase{
     driver.switchTo().alert().accept();
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    driver.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initContactModification() {
@@ -76,5 +74,9 @@ public class ContactHelper extends HelperBase{
 
   public boolean isThereAContact() {
     return (isElementPresent(By.name("selected[]")));
+  }
+
+  public int contactCount() {
+    return driver.findElements(By.name("selected[]")).size();
   }
 }
