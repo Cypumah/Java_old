@@ -87,10 +87,11 @@ public class ContactHelper extends HelperBase{
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
+    List<WebElement> elements = driver.findElements(By.cssSelector(""));
     for (WebElement element : elements) {
       String name = element.getText();
-      ContactData contact = new ContactData("tre", "tre", "tre", "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7");
+      String lastname = element.getText();
+      ContactData contact = new ContactData(name, "tre", lastname, "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7");
       contacts.add(contact);
     }
     return contacts;

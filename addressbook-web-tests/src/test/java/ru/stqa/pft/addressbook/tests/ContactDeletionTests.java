@@ -9,8 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
  */
 public class ContactDeletionTests extends TestBase{
 
-  @Test
-
+  @Test (enabled = false)
   public void testContactDeletion() throws Exception {
     app.getNavigationHelper().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
