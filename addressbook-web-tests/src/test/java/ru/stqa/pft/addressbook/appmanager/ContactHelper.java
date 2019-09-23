@@ -55,6 +55,10 @@ public class ContactHelper extends HelperBase{
     driver.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void selectContactById(int id) {
+    driver.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
   public void initContactModification() {
     click(By.xpath("//img[@alt='Edit']"));
   }
@@ -87,7 +91,7 @@ public class ContactHelper extends HelperBase{
 
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = driver.findElements(By.cssSelector("td.center"));
+    List<WebElement> elements = driver.findElements(By.name("selected[]"));
     for (WebElement element : elements) {
       String name = element.getText();
       ContactData contact = new ContactData(name, null, null, null, null, null, null, null, null, null);

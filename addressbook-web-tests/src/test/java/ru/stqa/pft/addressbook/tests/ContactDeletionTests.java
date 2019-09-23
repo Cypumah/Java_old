@@ -24,13 +24,15 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() throws Exception {
     //int before = app.getContactHelper().contactCount();
     List<ContactData> before = app.getContactHelper().list();
-    app.getContactHelper().selectContact(0);
+    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteSelectedContact();
     app.goTo().gotoHomePage();
     //int after = app.getContactHelper().contactCount();
     List<ContactData> after = app.getContactHelper().list();
+    Assert.assertEquals(after.size(), before.size() - 1);
 
-    Assert.assertEquals(after.size(), before.size() - 6);
+   // before.remove(before.size() - 1);
+   // Assert.assertEquals(before, after);
 
   }
 }
