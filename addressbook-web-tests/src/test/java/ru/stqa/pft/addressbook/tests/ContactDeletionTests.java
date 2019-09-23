@@ -11,14 +11,14 @@ public class ContactDeletionTests extends TestBase{
 
   @Test (enabled = false)
   public void testContactDeletion() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("tre", "tre", "tre", "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7"), true);
     }
     int before = app.getContactHelper().contactCount();
     app.getContactHelper().selectContact(0);
     app.getContactHelper().deleteSelectedContact();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     int after = app.getContactHelper().contactCount();
     Assert.assertEquals(after, before - 1);
 
