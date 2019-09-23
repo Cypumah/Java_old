@@ -85,13 +85,12 @@ public class ContactHelper extends HelperBase{
     return driver.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = driver.findElements(By.cssSelector(""));
+    List<WebElement> elements = driver.findElements(By.cssSelector("td.center"));
     for (WebElement element : elements) {
       String name = element.getText();
-      String lastname = element.getText();
-      ContactData contact = new ContactData(name, "tre", lastname, "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7");
+      ContactData contact = new ContactData(name, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
