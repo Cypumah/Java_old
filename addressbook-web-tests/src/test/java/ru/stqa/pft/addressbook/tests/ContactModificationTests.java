@@ -18,14 +18,15 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("tre", "tre", "tre", "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7"), true);
+      app.getContactHelper().createContact(new ContactData()
+              .withName("!!!").withMiddlename("1212").withLastname("111").withNickname("tre").withCompany("tre").withAddress("st Push, Krasnaya street 8").withHomephone("64731584").withMobilephone("33342").withNotes("privet privet").withGroup("test7"), true);
     }
   }
 
   @Test
   public void testContactModification() {
     List<ContactData> before = app.getContactHelper().list();
-    ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "ttt", "ttt", "jjjjjj", "Iva", "Trim", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", null);
+    ContactData contact = new ContactData().withId(before.get(before.size() - 1).getId()).withName("!!!").withMiddlename("1212").withLastname("111").withNickname("tre").withCompany("tre").withAddress("st Push, Krasnaya street 8").withHomephone("64731584").withMobilephone("33342").withNotes("privet privet").withGroup(null);
     app.getContactHelper().initContactModification(contact.getId());
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
@@ -36,6 +37,9 @@ public class ContactModificationTests extends TestBase {
     before.remove(before.size() - 1);
     before.add(contact);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
+
+
 
 
   }

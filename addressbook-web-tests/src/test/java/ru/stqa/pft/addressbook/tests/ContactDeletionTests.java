@@ -16,7 +16,8 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("tre", "tre", "tre", "tre", "tre", "st Push, Krasnaya street 8", "64731584", "33342", "privet privet", "test7"), true);
+      app.getContactHelper().createContact(new ContactData()
+              .withName("!!!").withMiddlename("1212").withLastname("111").withNickname("tre").withCompany("tre").withAddress("st Push, Krasnaya street 8").withHomephone("64731584").withMobilephone("33342").withNotes("privet privet").withGroup("test7"), true);
     }
   }
 
