@@ -9,7 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Sunny on 17.09.2019.
@@ -60,8 +62,12 @@ public class ContactHelper extends HelperBase{
   }
 
   public void initContactModification(int id) {
-    //click(By.xpath("//img[@alt='Edit']"));
     driver.findElement(By.cssSelector("a[href='" + "edit.php?id=" + id + "']")).click();
+  }
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContact();
   }
 
   public void submitContactModification() {
@@ -103,4 +109,19 @@ public class ContactHelper extends HelperBase{
     }
     return contacts;
   }
+
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> rows = driver.findElements(By.name("entry"));
+    for (WebElement row : rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      Integer id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String name = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      ContactData contact = new ContactData().withId(id).withName(name).withMiddlename(null).withLastname(lastname).withNickname(null).withCompany(null).withAddress(null).withHomephone(null).withMobilephone(null).withNotes(null).withGroup(null);
+      contacts.add(contact);
+    }
+    return contacts;
+  }
+
 }
