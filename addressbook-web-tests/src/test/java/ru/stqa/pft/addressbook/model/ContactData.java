@@ -14,6 +14,7 @@ public class ContactData {
   private String work;
   private String notes;
   private String group;
+  private String allphones;
 
 
 
@@ -68,6 +69,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllphones(String allphones) {
+    this.allphones = allphones;
+    return this;
+  }
+
   public ContactData withNotes(String notes) {
     this.notes = notes;
     return this;
@@ -114,8 +120,24 @@ public class ContactData {
     return mobilephone;
   }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", work='" + work + '\'' +
+            ", mobilephone='" + mobilephone + '\'' +
+            ", homephone='" + homephone + '\'' +
+            '}';
+  }
+
   public String getWorkPhone() {
     return work;
+  }
+
+  public String getAllphones() {
+    return allphones;
   }
 
   public String getNotes() {
@@ -126,15 +148,6 @@ public class ContactData {
     return group;
   }
 
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
 
   @Override
   public boolean equals(Object o) {
