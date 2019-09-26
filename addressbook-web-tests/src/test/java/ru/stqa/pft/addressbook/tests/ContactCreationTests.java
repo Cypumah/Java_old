@@ -24,12 +24,8 @@ public class ContactCreationTests extends TestBase {
     Set<ContactData> after = app.contact().all();
     assertThat(after.size(), equalToObject(before.size() + 1));
 
-
-   // int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
-   // contact.withId(max);
     contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt());
     before.add(contact);
-    //Assert.assertEquals(before, after);
     assertThat(after, equalTo(before));
 
   }

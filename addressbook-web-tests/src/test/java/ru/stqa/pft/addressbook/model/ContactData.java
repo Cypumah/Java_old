@@ -11,6 +11,7 @@ public class ContactData {
   private String address;
   private String homephone;
   private String mobilephone;
+  private String work;
   private String notes;
   private String group;
 
@@ -62,6 +63,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withWorkPhone(String work) {
+    this.work = work;
+    return this;
+  }
+
   public ContactData withNotes(String notes) {
     this.notes = notes;
     return this;
@@ -108,6 +114,10 @@ public class ContactData {
     return mobilephone;
   }
 
+  public String getWorkPhone() {
+    return work;
+  }
+
   public String getNotes() {
     return notes;
   }
@@ -146,6 +156,7 @@ public class ContactData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
+
 
 
 }

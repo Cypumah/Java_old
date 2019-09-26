@@ -96,6 +96,17 @@ public class ContactHelper extends HelperBase{
     return driver.findElements(By.name("selected[]")).size();
   }
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModification(contact.getId());
+    String firstname = driver.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = driver.findElement(By.name("lastname")).getAttribute("value");
+    String home = driver.findElement(By.name("home")).getAttribute("value");
+    String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
+    String work = driver.findElement(By.name("work")).getAttribute("value");
+    driver.navigate().back();
+    return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname).withHomephone(home).withMobilephone(mobile).withWorkPhone(work);
+  }
+
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> rows = driver.findElements(By.name("entry"));
@@ -118,7 +129,9 @@ public class ContactHelper extends HelperBase{
       Integer id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String name = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      ContactData contact = new ContactData().withId(id).withName(name).withMiddlename(null).withLastname(lastname).withNickname(null).withCompany(null).withAddress(null).withHomephone(null).withMobilephone(null).withNotes(null).withGroup(null);
+      String[] phones = cells.get(5).getText().split("\n");
+      ContactData contact = new ContactData().withId(id).withName(name).withMiddlename(null).withLastname(lastname).withNickname(null).withCompany(null).withAddress(null)
+              .withHomephone(phones[0]).withMobilephone(phones[1]).withWorkPhone(phones[2]).withNotes(null).withGroup(null);
       contacts.add(contact);
     }
     return contacts;
